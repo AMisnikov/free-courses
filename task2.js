@@ -2,17 +2,18 @@
 
 		function doublePrefix(string) {
 			
+			let str = string.toLowerCase();
 			
 
-			if (string.length < 1 || string.length > 100) {
+			if (str.length < 1 || str.length > 100) {
 
 				process.stdout.write("Необходимо ввести строку длиной от 1 до 100 символов");
 				return;
 			}
 
 
-			for (let k = 0; k < string.length; k++) {
-				if (string[k].charCodeAt() > 122 || string[k].charCodeAt() < 97) {
+			for (let k = 0; k < str.length; k++) {
+				if (str[k].charCodeAt() > 122 || str[k].charCodeAt() < 97) {
 
 					process.stdout.write("Небходимо ввести строку из латинских символов от a до z");
 					return;
@@ -24,13 +25,13 @@
 			let substr = [];
 			
 
-			for (let i = 0; i < string.length; i++ ) {
-				search += string[i];
+			for (let i = 0; i < str.length; i++ ) {
+				search += str[i];
 
 				
-				for (let j = 0, counter = 0; j < string.length - (search.length - 1); j++) {
+				for (let j = 0, counter = 0; j < str.length - (search.length - 1); j++) {
 
-					let foundPos = string.indexOf(search, j);
+					let foundPos = str.indexOf(search, j);
 
 					if (foundPos !== -1) { 
 						
