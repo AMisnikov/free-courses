@@ -1,6 +1,11 @@
 
 
 		function doublePrefix(string) {
+
+			if (string == undefined) {
+				process.stdout.write("Использование программы: node task2.js 'строка'");
+				return;
+			}
 			
 			let str = string.toLowerCase();
 			
