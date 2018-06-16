@@ -1,14 +1,16 @@
 
 
-		function doublePrefix(string) {
+		function findRepeatSub(string) {
 
+			//Проверяем строку на длину в соответствии с условиями
 			if (string === undefined || string.length > 100) {
 				process.stdout.write("Необходимо ввести строку длиной от 1 до 100 символов");
 				return;
 			}
 			
 			let str = string.toLowerCase();
-			
+		
+			//Проверяем введенную строку на используемые символы (по условию только латинница)
 			for (let k = 0; k < str.length; k++) {
 				if (str[k].charCodeAt() > 122 || str[k].charCodeAt() < 97) {
 
@@ -16,17 +18,47 @@
 					return;
 				}
 			}
-		
-			let search = "";
-			let result = "Совпадений не найдено";
-			
-			for (let i = 0; i < str.length; i++ ) {
-				search += str[i];
 
-				if(str.indexOf(search, 1) !== -1) result = search;
+			let repeatStrings = [];//Массив для записи повторяющихся подстрок
+
+			//Находим повторяющиеся строки и добавляем  в массив
+
+			for (let i = 0; i < str.length; i++) {
+
+				for(let j = i+1; j <= str.length; j++) {
+
+					let search = str.slice(i, j);
+
+					if (str.slice(0, i).indexOf(search) !== -1 || str.slice(i+1, str.length).indexOf(search) !== -1) {
+
+						if (repeatStrings.indexOf(search) === -1){
+							repeatStrings.push(search);
+						}  
+					}
+				}
 			}
-				
-			process.stdout.write(result);
+
+
+			//Проверка на наличие повторений
+
+			if(repeatStrings.length === 0) {
+				process.stdout.write('Повторяющихся подстрок не найдено');
+				return;
+
+			}
+
+			//Находим максимальную строку из повторяющихся
+
+			let maxRepeat = '';
+
+			for (let k = 0; k < repeatStrings.length; k++) {
+				if (repeatStrings[k].length > maxRepeat.length) {
+					maxRepeat = repeatStrings[k];
+				}
+			}
+		
+			process.stdout.write(maxRepeat);
+			
 		}
 		
-doublePrefix(process.argv[2]);
+		findRepeatSub(process.argv[2]);
