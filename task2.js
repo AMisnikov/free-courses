@@ -23,13 +23,13 @@
 
 			//Находим повторяющиеся строки и добавляем  в массив
 
-			for (let i = 0; i < str.length; i++) {
+			for (let i = 0; i < string.length; i++) {
 
-				for(let j = i+1; j <= str.length; j++) {
+				for(let j = i+1; j <= string.length; j++) {
 
-					let search = str.slice(i, j);
+					let search = string.slice(i, j);
 
-					if (str.slice(0, i).indexOf(search) !== -1 || str.slice(i+1, str.length).indexOf(search) !== -1) {
+					if (string.slice(0, i).indexOf(search) !== -1 || string.slice(i+1, str.length).indexOf(search) !== -1) {
 
 						if (repeatStrings.indexOf(search) === -1){
 							repeatStrings.push(search);
@@ -54,6 +54,13 @@
 			for (let k = 0; k < repeatStrings.length; k++) {
 				if (repeatStrings[k].length > maxRepeat.length) {
 					maxRepeat = repeatStrings[k];
+				}
+
+				if(repeatStrings[k].length === maxRepeat.length) {
+					if (repeatStrings[k] > maxRepeat) {
+						maxRepeat = repeatStrings[k];
+					}
+
 				}
 			}
 		
