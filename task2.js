@@ -23,18 +23,7 @@
 			for (let i = 0; i < str.length; i++ ) {
 				search += str[i];
 
-				for (let j = 0, counter = 0; j < str.length - (search.length - 1); j++) {
-
-					let foundPos = str.indexOf(search, j);
-
-					if (foundPos !== -1) counter++; 
-
-					if(counter > 1) {
-
-						result = search;
-						break;	
-					}
-				}
+				if(str.indexOf(search, 1) !== -1) result = search;
 			}
 				
 			process.stdout.write(result);
